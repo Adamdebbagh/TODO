@@ -2,13 +2,13 @@ package org.tekwin.todo;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -86,19 +86,26 @@ public class ToDoListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         // TODO - Get the current ToDoItem
-        final ToDoItem toDoItem = null;
+        final ToDoItem toDoItem = (ToDoItem) getItem(position);
 
         // TODO - Inflate the View for this ToDoItem
         // from todo_item.xml
-        RelativeLayout itemLayout = null;
+        if (convertView == null ) {
 
+            LayoutInflater inflater =(LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.todo_item, null);
+
+            //RelativeLayout itemLayout = (RelativeLayout)findViewById(R.id.RelativeLayout1) ;
+        }
         // TODO - Fill in specific ToDoItem data
         // Remember that the data that goes in this View
         // corresponds to the user interface elements defined
         // in the layout file
 
         // TODO - Display Title in TextView
-        final TextView titleView = null;
+        final TextView titleView = (TextView)convertView.findViewById(R.id.titleView);
+        titleView.setText(toDoItem.getTitle());
+        ;
 
         // TODO - Set up Status CheckBox
         final CheckBox statusView = null;
