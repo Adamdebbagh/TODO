@@ -95,6 +95,8 @@ public class AddToDoActivity extends Activity {
                 Log.i(TAG, "Entered cancelButton.OnClickListener.onClick()");
 
                 // TODO - Indicate result and finish
+                setResult(RESULT_CANCELED);
+                finish();
 
             }
         });
@@ -107,7 +109,7 @@ public class AddToDoActivity extends Activity {
                 Log.i(TAG, "Entered resetButton.OnClickListener.onClick()");
 
                 // TODO - Reset data to default values
-
+                resetToDefault();
             }
         });
 
@@ -288,5 +290,13 @@ public class AddToDoActivity extends Activity {
     private void showTimePickerDialog() {
         DialogFragment newFragment = new TimePickerFragment();
         newFragment.show(getFragmentManager(), "timePicker");
+    }
+    protected void resetToDefault() {
+        setDefaultDateTime();
+
+        mTitleText.setText("");
+
+        mPriorityRadioGroup.check(R.id.medPriority);
+        mStatusRadioGroup.check(R.id.statusNotDone);
     }
 }
